@@ -32,7 +32,7 @@
     <fabric8.label.group>quickstarts</fabric8.label.group>
     <fabric8.iconRef>camel</fabric8.iconRef>
     <log4j2-version>2.5</log4j2-version>
-    <pax.logging.version>1.8.4</pax.logging.version>
+    <pax.logging.version>1.8.5</pax.logging.version>
   </properties>
 
   <dependencyManagement>

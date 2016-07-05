@@ -2,7 +2,7 @@
 <Configuration status="INFO">
     <Appenders>
         <Console name="console" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d{ABSOLUTE} | %-5.5p | %-16.16t | %-32.32c{1} | %X{bundle.id} - %X{bundle.name} - %X{bundle.version} | %m%n"/>
+            <JsonLayout compact="true" eventEol="true" />
         </Console>
         <RollingFile name="out" fileName="${karaf.data}/log/karaf.log"
                      append="true" filePattern="${karaf.data}/log/$${date:yyyy-MM}/fuse-%d{MM-dd-yyyy}-%i.log.gz">
