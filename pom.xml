@@ -116,6 +116,22 @@
         <artifactId>maven-bundle-plugin</artifactId>
         <version>${version.maven-bundle-plugin}</version>
         <extensions>true</extensions>
+        <configuration>
+          <instructions>
+            <Bundle-Blueprint>
+              OSGI-INF/blueprint/camel-log.xml
+            </Bundle-Blueprint>
+            <Require-Capability>
+              osgi.ee;filter:=(&amp;(osgi.ee=JavaSE)(version=1.6))
+            </Require-Capability>
+            <Import-Package>
+              org.apache.logging.log4j.core.osgi;resolution:=runtime,
+              org.apache.logging.log4j.core.lookup;resolution:=runtime,
+              sun.reflect;resolution:=optional,
+              *
+            </Import-Package>
+          </instructions>
+        </configuration>
       </plugin>
       <plugin>
         <groupId>io.fabric8</groupId>
@@ -190,9 +206,11 @@
             <feature>jaas</feature>
             <feature>aries-blueprint</feature>
             <feature>camel-blueprint</feature>
+            <feature>camel-jackson</feature>
           </startupFeatures>
           <startupBundles>
             <startupBundle>mvn:org.ops4j.pax.logging/pax-logging-log4j2/${pax.logging.version}</startupBundle>
+            <startupBundle>mvn:org.ops4j.pax.logging/pax-logging-api/${pax.logging.version}</startupBundle>
             <startupBundle>mvn:org.apache.logging.log4j/log4j-api/${log4j2-version}</startupBundle>
             <startupBundle>mvn:org.apache.logging.log4j/log4j-core/${log4j2-version}</startupBundle>
             <bundle>mvn:${project.groupId}/${project.artifactId}/${project.version}</bundle>
