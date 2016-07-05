@@ -31,6 +31,8 @@
     <fabric8.label.container>karaf</fabric8.label.container>
     <fabric8.label.group>quickstarts</fabric8.label.group>
     <fabric8.iconRef>camel</fabric8.iconRef>
+    <log4j2-version>2.5</log4j2-version>
+    <pax.logging.version>1.8.4</pax.logging.version>
   </properties>
 
   <dependencyManagement>
@@ -49,6 +51,14 @@
         <version>${fuse.version}</version>
         <type>pom</type>
         <scope>import</scope>
+      </dependency>
+      <!-- Logging -->
+      <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-bom</artifactId>
+        <version>${log4j2-version}</version>
+        <scope>import</scope>
+        <type>pom</type>
       </dependency>
     </dependencies>
   </dependencyManagement>
@@ -182,6 +192,9 @@
             <feature>camel-blueprint</feature>
           </startupFeatures>
           <startupBundles>
+            <startupBundle>mvn:org.ops4j.pax.logging/pax-logging-log4j2/${pax.logging.version}</startupBundle>
+            <startupBundle>mvn:org.apache.logging.log4j/log4j-api/${log4j2-version}</startupBundle>
+            <startupBundle>mvn:org.apache.logging.log4j/log4j-core/${log4j2-version}</startupBundle>
             <bundle>mvn:${project.groupId}/${project.artifactId}/${project.version}</bundle>
           </startupBundles>
         </configuration>
